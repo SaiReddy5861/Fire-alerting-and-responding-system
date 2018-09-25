@@ -1,0 +1,107 @@
+
+#include <dht.h>
+#include<stdlib.h>
+#define ssid "SAI"
+#define pass "saireddy"
+#define api "api.thingspeak.com"
+#define baudrate 115200
+#define dhtpin 7
+String GET="GET /update?api_key=BPK66MMJ1INE3L1F&field1=";
+String Field2="&field2=";
+bool updated;
+dht dht11;
+void setup() {
+  // put your setup code here, to run once:
+Serial.begin(baudrate);
+Serial.println("AT");
+delay(5000);
+if(Serial.find("OK"))
+{
+  bool connected=ConnectWiFi();
+  if(!connected)
+  {
+    Serial.println("WiFi is not connected");
+  }
+  }
+
+else
+{
+  Serial.println("Wifi Module not Respond");
+}
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+dht11.read11(dhtpin);
+float t,h;
+t=dht11.temperature;
+h=dht11.humidity;
+updated=updatevalues(String(t),String(h));
+if(updated)
+{
+  Serial.println("updated the values in cloud");
+}
+else
+{
+  Serial.println("not updated");
+}
+delay(5000);
+}
+
+bool ConnectWiFi()
+{
+  Serial.println("AT+CWMODE=1");
+  delay(2000);
+  String cmd="AT+CWJAP=\"";
+  cmd+=ssid;
+  cmd+="\",\"";
+  cmd+=pass;
+  cmd+="\"";
+  Serial.println(cmd);
+  delay(5000);
+  if(Serial.find("OK"))
+  {
+    return true;
+  }
+  else
+  {
+    return false;
+}
+}
+bool updatevalues(String temp,String hum)
+{
+  String cmd="AT+CIPSTART=\"TCP\",\"";
+  cmd+=api;
+  cmd+="\",80";
+  Serial.println(cmd);
+  delay(2000);
+  if(Serial.find("Error"))
+  {
+    return false;
+    
+  }
+  cmd=GET;
+  cmd+=temp;
+  cmd+=Field2;
+  cmd+=hum;
+  cmd+="\r\n";
+  Serial.print("AT+CIPSEND=");
+  Serial.println(cmd.length());
+  if(Serial.find(">"))
+  {
+    Serial.print(cmd);
+  }
+  else
+  {
+    Serial.println("AT+CIPCLOSE");
+  }
+  if(Serial.find("OK"))
+  {
+    return true;
+  }
+  else
+  {
+    return false;
+  }
+}
+

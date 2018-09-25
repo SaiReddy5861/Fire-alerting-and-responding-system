@@ -1,0 +1,106 @@
+#include <MQ135.h>
+#include<stdlib.h>
+#define ssid "DRAGOONFUSION4"
+#define pass "Ayiesha!"
+#define api "api.thingspeak.com"
+#define baudrate 115200
+String GET = "GET /update?api_key=1W59UEM1035T3SJ3&field1=";
+bool updated;
+bool ConnectWiFi()
+{
+  Serial.println("AT+CWMODE=1");
+  delay(2000);
+  String cmd = "AT+CWJAP=\"";
+  cmd += ssid;
+  cmd += "\",\"";
+  cmd += pass;
+  cmd += "\"";
+  Serial.println(cmd);
+  delay(5000);
+  if (Serial.find("OK"))
+  {
+    return true;
+  }
+  else
+  {
+    return false;
+  }
+}
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(baudrate);
+  Serial.println("AT");
+  delay(5000);
+  if (Serial.find("OK"))
+  {
+
+    bool connected = ConnectWiFi();
+    if (!connected)
+    {
+      Serial.println("WiFi is not connected");
+    }
+    else
+    {
+      Serial.println("Wifi Connected");
+    }
+  }
+
+  else
+  {
+    Serial.println("Wifi Module not Respond");
+  }
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  MQ135 gas = MQ135(A0);
+  float ppmvalue = gas.getPPM();
+  updated = updatevalues(String(ppmvalue));
+  if (updated)
+  {
+    Serial.println("updated the values in cloud");
+  }
+  else
+  {
+    Serial.println("not updated");
+  }
+  delay(5000);
+}
+
+
+bool updatevalues(String ppmvalues)
+{
+  String cmd = "AT+CIPSTART=\"TCP\",\"";
+  cmd += api;
+  cmd += "\",80";
+  Serial.println(cmd);
+  delay(2000);
+  if (Serial.find("Error"))
+  {
+    return false;
+
+  }
+  cmd = GET;
+  cmd += ppmvalues;
+
+  cmd += "\r\n";
+  Serial.print("AT+CIPSEND=");
+  Serial.println(cmd.length());
+  if (Serial.find(">"))
+  {
+    Serial.print(cmd);
+  }
+  else
+  {
+    Serial.println("AT+CIPCLOSE");
+  }
+  if (Serial.find("OK"))
+  {
+    return true;
+  }
+  else
+  {
+    return false;
+  }
+}
+

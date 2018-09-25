@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<title>Welcome To Alert</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<body onload="commonFunction()" ><!--  -->
+
+<!-- Side Navigation -->
+<nav class="w3-sidebar w3-bar-block w3-card w3-animate-left w3-center" style="display:none" id="mySidebar">
+  <h1 class="w3-xxxlarge w3-text-theme">Other Links</h1>
+  <button class="w3-bar-item w3-button" onclick="w3_close()">Close <i class="fa fa-remove"></i></button>
+  <a href="#" class="w3-bar-item w3-button">Link 1</a>
+  <a href="#" class="w3-bar-item w3-button">Link 2</a>
+  <a href="#" class="w3-bar-item w3-button">Link 3</a>
+  <a href="#" class="w3-bar-item w3-button">Link 4</a>
+</nav>
+
+<!-- Header -->
+<header class="w3-container w3-theme w3-padding" id="myHeader">
+  <i onclick="w3_open()" class="fa fa-bars w3-xlarge w3-button w3-theme"></i> 
+  <div class="w3-center">
+  <h4>FIRE FIRE FIRE FIRE</h4>
+  <h1 class="w3-xxxlarge w3-animate-bottom">ALERT</h1>
+      
+<!--  CALLING THE FUNCTION FOR DANGER FUNCTION --> 
+    
+    <div class="w3-padding-32">
+      <button class="w3-btn w3-xlarge w3-dark-grey w3-hover-light-grey" onclick="document.getElementById('id01').style.display='block'" style="font-weight:900;">Click Me</button>
+    </div>
+  </div>
+</header>
+
+<!-- Modal -->
+<div id="id01" class="w3-modal">
+    <div class="w3-modal-content w3-card-4 w3-animate-top">
+      <header class="w3-container w3-theme-l1"> 
+        <span onclick="document.getElementById('id01').style.display='none'"
+        class="w3-button w3-display-topright">×</span>
+        <h4>Oh snap! We just showed you a modal..</h4>
+        <h5>Because we can <i class="fa fa-smile-o"></i></h5>
+      </header>
+        
+        <!-- POP  box for danger time -->
+        
+        
+      <div class="w3-padding">
+        <p>Cool huh? Ok, enough teasing around..</p>
+        <p>Go to our <a class="w3-btn" href="/w3css/default.asp">W3.CSS Tutorial</a> to learn more!</p>
+      </div>
+      <footer class="w3-container w3-theme-l1">
+        <p>Modal footer</p>
+      </footer>
+    </div>
+</div>
+
+<div class="w3-row-padding w3-center w3-margin-top">
+    
+    <!-- Temprature part -->
+<div class="w3-third">
+  <div class="w3-card w3-container" style="min-height:460px">
+  <h3>Temprature</h3><br>
+  <i class="fa fa-question w3-margin-bottom w3-text-theme" style="font-size:120px"></i>
+    
+  <p style="text-align: left">Module#1:</p>
+  <div class="progress" id="TempMod_1">
+ 
+  </div>
+  <p style="text-align: left">Module#2:</p>
+   <div class="progress">
+      <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:60%">60% warning</div>
+      <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:60%">60% warning</div>
+  </div>
+  <p style="text-align: left">Module#3:</p>
+   <div class="progress">
+      <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:80%">80% Complete danger</div>
+  </div>
+  </div>
+</div>
+
+<!-- Flame part -->
+    
+<div class="w3-third">
+  <div class="w3-card w3-container" style="min-height:460px">
+  <h3>Flame</h3><br>
+  <i class="fa fa-fire w3-margin-bottom w3-text-theme" style="font-size:120px"></i>
+     <p style="text-align: left">Module#1:</p>
+      <div class="progress" id="Flame_mod_1">
+ 
+      </div>
+      <p style="text-align: left">Module#2:</p>
+       <div class="progress">
+          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:60%">60% warning</div>
+          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:60%">60% warning</div>
+      </div>
+      <p style="text-align: left">Module#3:</p>
+       <div class="progress">
+          <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:80%">80% Complete danger</div>
+      </div>
+  </div>
+</div>
+
+<!-- Air Purity -->    
+
+<div class="w3-third">
+  <div class="w3-card w3-container" style="min-height:460px">
+  <h3>Air Purity</h3><br>
+  <i class="fa fa-spinner w3-margin-bottom w3-text-theme" style="font-size:120px"></i>
+    <p style="text-align: left">Module#1:</p>
+      <div class="progress" id="Purity_mod_1">
+ 
+      </div>
+      <p style="text-align: left">Module#2:</p>
+       <div class="progress">
+          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:60%">60% warning</div>
+          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:60%">60% warning</div>
+      </div>
+      <p style="text-align: left">Module#3:</p>
+       <div class="progress">
+          <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:80%">80% Complete danger</div>
+      </div>
+  
+  </div>
+</div>
+</div>
+    
+<!-- Script for Sidebar, Tabs, Accordions, Progress bars and slideshows -->
+<script>
+// Side navigation
+function w3_open() {
+    var x = document.getElementById("mySidebar");
+    x.style.width = "50";
+    x.style.fontSize = "20px";
+    x.style.paddingTop = "5%";
+    x.style.display = "block";
+}
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+}
+
+function commonFunction(){
+    
+    Temprature();
+    Flame();
+    AirPurity();
+    setTimeout(commonFunction,5000);
+    
+}
+function Temprature(){
+    //Temprature _______-------------------______________------
+    var getIdMod = 1;
+    
+    $.ajax({
+        type: 'POST',
+        url : "components/tempratureComp/temprature.php",
+        data: {"getTemprature": getIdMod},
+        success:function(tempMod){
+        $("#TempMod_1").html(tempMod);
+        }
+    });
+}
+
+function Flame(){
+    //flame sensor
+    var getIdMod = 1; //For multiple module
+    
+    $.ajax({
+        type: 'POST',
+        url : 'components/flameComp/flame.php',
+        data: {"flame": getIdMod},
+        success:function(Flame_mod){
+        $("#Flame_mod_1").html(Flame_mod);
+        }
+    });
+}
+function AirPurity(){
+    // AirPurity
+    var getIdMod = 1; //For multiple module
+    $.ajax({
+        type: 'POST',
+        url : 'components/AirPurity/Apurity.php',
+        data: {"AirPurity": getIdMod},
+        success:function(Flame_mod){
+        $("#Purity_mod_1").html(Flame_mod);
+        }
+    });
+}
+
+</script>
+
+</body>
+</html>
